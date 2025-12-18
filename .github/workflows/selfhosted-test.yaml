@@ -29,5 +29,5 @@ jobs:
       # Step 3: Simple Hello World test
       - name: Hello World
         run: |
-          echo "Hello from self-hosted runner by Abhijeet!"
+          echo "Hello welcome to devops session!"
         shell: bash
