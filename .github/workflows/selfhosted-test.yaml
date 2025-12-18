@@ -1,23 +1,33 @@
 name: Self-Hosted Runner Test
 
+# Triggers the workflow on push or manual trigger
 on:
   push:
   workflow_dispatch:
 
 jobs:
   test:
-    runs-on: [self-hosted, ec2, linux]
+    # Use the exact labels of your self-hosted runner
+    runs-on: [self-hosted, Linux, X64]
 
     steps:
+      # Step 1: Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
+      # Step 2: Display runner information
       - name: Display runner info
         run: |
           echo "Runner Name: $RUNNER_NAME"
-          echo "Labels: $RUNNER_LABELS"
-          hostname
-          whoami
+          echo "Runner Labels: $RUNNER_LABELS"
+          echo "Current Hostname: $(hostname)"
+          echo "Current User: $(whoami)"
+          echo "Working Directory: $(pwd)"
+          echo "GitHub Workspace: $GITHUB_WORKSPACE"
+        shell: bash
 
+      # Step 3: Simple Hello World test
       - name: Hello World
-        run: echo "Hello from self-hosted runner by abhijeet!"
+        run: |
+          echo "Hello from self-hosted runner by Abhijeet!"
+        shell: bash
