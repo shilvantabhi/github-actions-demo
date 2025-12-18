@@ -1,0 +1,23 @@
+name: Self-Hosted Runner Test
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: [self-hosted, ec2, linux]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Display runner info
+        run: |
+          echo "Runner Name: $RUNNER_NAME"
+          echo "Labels: $RUNNER_LABELS"
+          hostname
+          whoami
+
+      - name: Hello World
+        run: echo "Hello from self-hosted runner!"
